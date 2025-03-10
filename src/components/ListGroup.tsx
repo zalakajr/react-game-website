@@ -1,17 +1,33 @@
-
+import { useState } from "react";
 
 const ListGroup = () => {
-  return (
-    <div>
-          <ul className="list-group">
-        <li className="list-group-item">An Item</li>
-        <li className="list-group-item">An Item</li>
-        <li className="list-group-item">An Item</li>
-        <li className="list-group-item">An Item</li>
-        <li className="list-group-item">An Item</li>
-    </ul>
-    </div>
-  )
-}
+  let items = ["New York", "Tokyo", "Sans Francisco", "London", "Paris"];
 
-export default ListGroup
+  
+  //hook
+ const [selectedIndex, setSelectedIndex] = useState(-1)
+ 
+
+
+  return (
+    <>
+      <h1>List</h1>
+      {items.length === 0 && <p>No item found</p>}
+      <ul className="list-group">
+        {items.map((item, index) => (
+          <li
+            className={selectedIndex === index ? 'list-group-item active' : 'list-group-item'}
+            key={item}
+            onClick={() => {setSelectedIndex(index)}}
+          >
+            {item}
+          </li>
+          
+        ))}
+      </ul>
+      
+    </>
+  );
+};
+
+export default ListGroup;
